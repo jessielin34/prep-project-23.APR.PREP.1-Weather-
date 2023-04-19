@@ -3,6 +3,7 @@ import "./App.css";
 import logo from "./mlh-prep.png";
 import AutoCity from "./components/AutoCity";
 import React  from 'react';
+import GetActivity from "./components/GetActivity";
 
 function App() {
   const [error, setError] = useState(null);
@@ -62,6 +63,7 @@ function App() {
             )}
           </div>
         </div>
+        {results !== null &&<GetActivity temp = {results.main.temp} weather = {results.weather[0].main} location={results.name} />}
       </>
     );
   }
