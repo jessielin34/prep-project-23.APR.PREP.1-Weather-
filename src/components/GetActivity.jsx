@@ -6,7 +6,7 @@ import Loading from "./Loading/Loading";
 
 function GetActivity(props) {
   const configuration = new Configuration({
-    apiKey: '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'
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY
   });
 
   const openai = new OpenAIApi(configuration);
