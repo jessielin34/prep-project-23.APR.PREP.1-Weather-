@@ -6,7 +6,7 @@ import Loading from "./Loading/Loading";
 
 function GetActivity(props) {
   const configuration = new Configuration({
-    apiKey: "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",
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY
   });
 
   const openai = new OpenAIApi(configuration);
@@ -29,7 +29,6 @@ function GetActivity(props) {
       presence_penalty: 0,
     });
 
-    console.log(prompt2, response.data.choices[0].text);
     setLoading(false);
     setResult(response.data.choices[0].text);
   }
