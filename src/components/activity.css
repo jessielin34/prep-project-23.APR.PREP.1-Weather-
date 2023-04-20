@@ -1,0 +1,15 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+.activity{
+  width: 50%;
+}
+.activity div {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  color: #000;
+}
