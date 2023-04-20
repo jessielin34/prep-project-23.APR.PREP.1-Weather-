@@ -6,12 +6,12 @@ import Loading from "./Loading/Loading";
 
 function GetActivity(props) {
   const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY
+    apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   });
 
   const openai = new OpenAIApi(configuration);
 
-  const [result, setResult] = useState();
+  const [result, setResult] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const prompt = `suggest activities when it's ${props.weather} and the temperature is ${props.temp} C in ${props.location}`;
@@ -29,8 +29,12 @@ function GetActivity(props) {
     });
 
     setLoading(false);
-    setResult(response.data.choices[0].text);
-  }
+    const paragraph = response.data.choices[0].text
+    let sentences = paragraph.split('\n');
+    sentences = sentences.filter(sentence=>sentence !=='')
+    console.log(sentences);
+    setResult(sentences);
+      }
 
   useEffect(() => {
     generateActivity();
@@ -44,7 +48,9 @@ function GetActivity(props) {
           <Loading />
         ) : (
           <div className="activity">
-            <div>{result}</div>
+            <div className="activities">{result.map(activity=>{
+              return <div className = "activityCard">{activity}</div>
+            })}</div>
           </div>
         )}
       </div>

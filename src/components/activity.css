@@ -5,11 +5,19 @@
   margin: 2rem 0;
 }
 .activity{
-  width: 50%;
+    width: 80%;
 }
-.activity div {
-  background-color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 15px;
-  color: #000;
+.activities {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.activityCard{
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 15px;
+    color: #000;
+    margin: 1rem;
+    width: 28%;
+
 }
