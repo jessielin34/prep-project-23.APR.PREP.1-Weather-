@@ -6,7 +6,7 @@ import Loading from "./Loading/Loading";
 
 function GetActivity(props) {
   const configuration = new Configuration({
-    apiKey: process.env.REACT_APP_OPENAI_API_KEY
+    apiKey: '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'
   });
 
   const openai = new OpenAIApi(configuration);
@@ -14,16 +14,15 @@ function GetActivity(props) {
   const [result, setResult] = useState();
   const [loading, setLoading] = useState(false);
 
-  const prompt = `What activities can i do in ${props.location} when the temperaute is ${props.temp}?`;
-  const prompt2 = `what to do when its ${props.weather} in ${props.location} and the temparature is ${props.temp}?`;
+  const prompt = `suggest activities when it's ${props.weather} and the temperature is ${props.temp} C in ${props.location}`;
 
   async function generateActivity() {
     setLoading(true);
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: prompt2,
-      temperature: 0,
-      max_tokens: 100,
+      prompt: prompt,
+      temperature: 0.7,
+      max_tokens: 256,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -35,7 +34,7 @@ function GetActivity(props) {
 
   useEffect(() => {
     generateActivity();
-  }, [prompt2]);
+  }, [prompt]);
 
   return (
     <>
